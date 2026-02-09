@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            HTML Elem 101
+        </title>
+        <style>
+            /* "." means looking for class w/ name */
+            /* h1, h2, h3 : grouping */
+            /* * : everything gets this, put on top */
+            /* Hx em{} : everything in Hx with emphasis tag get this */
+            * {
+                margin:0;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .align_right{
+                width: 50%;
+                text-align: right;
+            }
+            .sillytxt{
+                font-family: fantasy;
+            }
+            .alignjus{
+                text-align: justify;
+            }
+            #important{
+                /* font-weight: 700; */
+                font-weight: bolder;
+                font-size: x-large;
+            }
+            h2{
+                color: rgb(21, 0, 255);
+                background-color: aquamarine;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            <h2 style="margin: 20px 20px 20px 20px; margin-top: 50px;">heading1 display</h2>>
+        </h1>
+        <p1>
+            <p class="align_right">
+                content here
+            </p>
+            <p class="sillytxt">
+                content here
+            </p>
+            <p id="important" class="alignjus">
+                content here
+            </p>
+        </p1>
+    </body>
+</html>

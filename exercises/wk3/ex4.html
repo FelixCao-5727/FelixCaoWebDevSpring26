@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>Simple Navbar | Inline-Block</title>
+    <!-- internal style sht -->
+    <style type="text/CSS">
+      *{
+        margin: 0;
+        padding: 0;
+        /* border: 1px solid blue; */
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      body{
+        font-family: 'Courier New', Courier, monospace;
+      }
+      ul{
+        /* remove bullet points */
+        list-style-type: none;
+        overflow: hidden;
+        /* parent font size 0 */
+        font-size: 0;
+      }
+
+      li{
+        /* have default, no horizontal space shared w/ other elements */
+        display: inline-block;
+        font-size: 1rem;
+        /* width: 100px; */
+      }
+      /* descendant selector eg all anchors in li*/
+      li a{
+        /* take all available horizontal space */
+        display: block;
+        text-align: center;
+        width: 100px;
+        padding: 10px 20px;
+        padding-bottom: 20px;
+        /* remove styling */
+        color: #006091;
+        text-decoration: none;
+      }
+      /* highlight active page */
+      .active{
+        background-color: #66ccff;
+      }
+      /* add psuedo selector */
+      li a:hover{
+        background-color: rgb(163, 204, 239);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Link 1</a></li>
+          <li>
+            <a
+              class="active"
+              href="#"
+              >Link 2</a
+            >
+          </li>
+          <li><a href="#">Link 3</a></li>
+          <li><a href="#">Link 4</a></li>
+        </ul>
+      </nav>
+    </header>
+  </body>
+</html>
