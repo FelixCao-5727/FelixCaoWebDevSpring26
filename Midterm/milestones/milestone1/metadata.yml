@@ -1,0 +1,19 @@
+---
+:id: 395636193
+:submitters:
+- :name: Figo LU
+  :email: ll5304@nyu.edu
+- :name: Felix Cao
+  :email: yc7413@nyu.edu
+- :name: Victor Wang
+  :email: vhw2009@nyu.edu
+- :name: Austin Tan
+  :email: at6426@nyu.edu
+- :name: Alessandro Bordone
+  :email: agb9296@nyu.edu
+:created_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: 2026-03-06 01:33:09.733313000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: America/Los_Angeles
+  time: 2026-03-05 17:33:09.733313000 Z
+:status: processed
