@@ -1,0 +1,52 @@
+/* always start with the ost generally applicable styles (tags)
+and then get more specific as you drill down */
+
+/* zero out crappy edge margins on the page */
+html,
+body {
+  margin: 0;
+}
+
+/* some generic styles for our div elements so we can see them nest */
+div {
+  border: 1px solid red;
+  background-color: rgba(255, 150, 50, 0.2);
+}
+
+/* absolute positioned elements ithout a positioned parent
+will be positioned in relation to the entire brwoser window */
+.abs-no-parent-pos {
+  background-color: cornflowerblue;
+  width: 50%;
+  position: absolute;
+  top: 20%;
+  right: 100px;
+}
+
+.rel-parent-pos {
+  width: 50%;
+  height: 200vh;
+  background-color: blueviolet;
+  /* whenever you want to position something absolutely inside of another element
+  the parent element beeds to be positioned relative or any other non static value */
+  position: relative;
+  /* right: -300px; */
+}
+
+.abs-rel-parent-pos {
+  background-color: rgb(12, 237, 16);
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+}
+
+header {
+  background-color: coral;
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  /* think of z index as draw order[[' */
+  z-index: 10;
+}

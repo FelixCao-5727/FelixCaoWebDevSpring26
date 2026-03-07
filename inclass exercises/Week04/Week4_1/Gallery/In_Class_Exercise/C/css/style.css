@@ -1,0 +1,151 @@
+/* always load custom fonts and other depdendencies
+(like other stylesheets or CSS vars) first */
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
+/* Universal selector to reset some defaults */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* this is how we get a full size H&W image background */
+html {
+  background: url('../img/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* apply the default font styles to the body so
+all other elements within can inherit them */
+body {
+  font-family: 'Kaushan Script', cursive;
+}
+header{
+  width: 80%;
+  padding: 0 10%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #ccc;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: url("../img/dsktp.png");
+}
+
+header h1{
+  color: #333;
+}
+
+nav ul{
+  display: flex;
+  list-style-type: none;
+  text-align: center;
+  background-color: rgba(40, 40, 40, 0.5);
+}
+
+nav li{
+  font-size: 18px;
+  height: 50px;
+  line-height: 50px;
+  width: 120px;
+}
+
+nav a{
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: all 1s;
+}
+
+nav a:hover{
+  background-color: #6cf;
+  color: #333;
+}
+
+nav a.active{
+  background-color: black;
+  color: orange;
+}
+.container {
+  width: 900px;
+  margin: 0 auto;
+  /* since the poloaroid divs are going to display inline block
+  we need to zero out the font size her on the parent element to avoid
+  some extra half pixel spacing that accumulates */
+  font-size: 0;
+}
+
+.polaroid {
+  width: 260px;
+  margin: 20px;
+  display: inline-block;
+  /* this is the parent element we want to absolute position elements within */
+  position: relative;
+}
+
+/* this looks for the pattern of img tags within a parent with a class of polaroid */
+.polaroid img {
+  /* with images we usually make them take up 100%
+  width of a parent element which we size */
+  width: 100%;
+  /* height auto keeps the pixel aspect ratio as the image with scales to fit parent */
+  height: auto;
+  border: 10px solid #ccc;
+  border-bottom-width: 45px;
+}
+
+.polaroid p {
+  position: absolute;
+  bottom: 5px;
+  width: 280px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #6cf;
+}
+
+.scale_up{
+  transform: scale(1.2);
+}
+.scale_x{
+  transform: scale(2,1);
+}
+.scale_y{
+  transform: scaleY(2);
+}
+.skew_x{
+  transform: skewX(-20deg);
+}
+.skew_y{
+  transform: skewX(-20deg);
+}
+.skew_BOTH{
+  transform: skewX(10deg, 30deg);
+}
+.rot_x{
+  transform: rotateX(120deg);
+}
+.rot_y{
+  transform: rotateY(120deg);
+}
+.rot_z{
+  transform: rotateZ(120deg);
+}
+.rot_l{
+  transform: rotate(-90deg);
+  transition: all 2s ease-in-out;
+}
+.rot_l:hover{
+  transform: rotate(-90deg);
+  cursor: pointer;
+  transition: all 1s ease-in-out;
+}
+.skew_hover:hover{
+  transform: rotate(-90deg);
+  transition: all 1s ease-in-out;
+}
+.color_swap:hover{
+  filter: grayscale(0%);
+  transition: all 2s ease-in-out;
+}

@@ -1,0 +1,50 @@
+/* always load dependencies first - fonts, css variables, other style sheets */
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
+/* generic to specific with our styles */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Kaushan Script', cursive;
+
+  /* this is where we would declare and use a full size image background */
+  background: url('../img/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.container {
+  width: 900px;
+  margin: 0 auto;
+  /* rememeber to zero out font size of the container of inline block elements
+  dont forget to bring that font size back in the child element */
+  font-size: 0;
+}
+
+.polaroid {
+  width: 260px;
+  margin: 20px;
+  display: inline-block;
+  position: relative;
+}
+
+.polaroid img {
+  /* common design pattern is to never size images themselves
+  instead we make the image width 100% of its parent. and then assign dimensions to the parent */
+  width: 100%;
+  height: auto;
+  /* add some borders to mimic polaroid paper */
+  border: 10px solid #ccc;
+  border-bottom-width: 45px;
+}
+
+.polaroid p {
+  font-size: 1rem;
+  color: #333;
+  position: absolute;
+  bottom: 9px;
+  width: 280px;
+  text-align: center;
+}
