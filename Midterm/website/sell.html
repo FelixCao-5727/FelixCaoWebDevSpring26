@@ -8,24 +8,70 @@
 </head>
 <body>
 
-   <header class="main-header">
-        <div class="header-left">
-            <div class="logo-group">
-                <img src="media/nyu.png" alt="NYU Logo" class="header-logo">
-                <span class="logo-text">NYU</span>
+    <header class="main-header">
+    <div class="header-left">
+        <div class="logo-group">
+            <img src="media/nyu.png" alt="NYU" class="header-logo">
+            <span class="logo-text">NYU</span>
+        </div>
+    </div>
+    
+    <div class="title-box">
+        <h1>Swipe Marketplace</h1>
+    </div>
+
+    <div class="header-actions">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="nav-menu">
+            <div class="nav-links">
+                <a class="btn-main" href="buy.html">Buy</a>
+                <button class="btn-main">Account</button>
+                <button class="btn-main">Language</button>
+            </div>
+
+            <div class="mobile-filter-content">
+                <hr class="menu-divider">
+                <div class="menu-filters">
+                    <section class="filter-group">
+                        <h3>List By</h3>
+                        <label>Swipe Amount:</label>
+                        <select class="dropdown-select">
+                            <option value="default">Select...</option>
+                            <option value="amount-lo-hi">Lo-Hi</option>
+                            <option value="amount-hi-lo">Hi-Lo</option>
+                        </select>
+                    </section>
+                    <section class="filter-group">
+                        <h3>Filters</h3>
+                        <label>Swipes: 0~<span id="swipe-val">100</span></label>
+                        <input type="range" id="swipe-range" class="slider" min="0" max="100" value="10">
+                        
+                        <label>Price: $0~<span id="price-val">1500</span></label>
+                        <input type="range" id="price-range" class="slider" min="0" max="1500" value="150">
+                        
+                        <button class="btn-main">Apply</button>
+                    </section>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header> 
+   <div class="promo-banner">
+        <div class="banner-image-container">
+            <img src="media/Lipton-Horizontal.jpg" alt="Dining Hall Banner" class="full-width-banner">
+            
+            <div class="banner-overlay-content">
+                <h2>WELCOME TO NYU SWIPE MARKETPLACE </h2>
+                <h3>Buy and sell swipes DIRECTLY with students across the campus. </h3>
             </div>
         </div>
-        
-        <div class="title-box">
-            <h1>Swipe Marketplace</h1>
-        </div>
-
-        <div class="header-actions">
-            <a class="btn-sell" href="buy.html">Buy</a>
-            <button class="btn-account">Account</button>
-            <button class="btn-lang">Language</button>
-        </div>
-    </header>
+    </div>
     <div class="posting-bar NYU-styled">
         <div class="posting-container">
             <span class="posting-label">Create Posting:</span>
@@ -34,7 +80,7 @@
                 <option value="" disabled selected>Dining Hall</option>
                 <option value="lipton">Lipton Hall</option>
                 <option value="weinstein">Weinstein Hall</option>
-                <option value="jasper">Jasper Cane Cafe</option>
+                <option value="jasper">Jasper Kane Cafe</option>
             </select>
 
             <select class="post-input small">
@@ -48,15 +94,6 @@
             <input type="text" placeholder="Price" class="post-input tiny">
             
             <button class="btn-post-white">Post Swipe</button>
-        </div>
-    </div>
-
-    <div class="promo-banner">
-        <div class="banner-image-container">
-            <img src="media/Lipton-Horizontal.jpg" alt="Dining Hall Banner" class="full-width-banner">
-        </div>
-        <div class="banner_sub">
-            <h2>Here are your listings:</h2>
         </div>
     </div>
     <div class="page-layout">
@@ -96,7 +133,7 @@
                 <label>Price Range: $0~<span id="price-val">1500</span></label>
                 <input type="range" id="price-range" class="slider" min="0" max="1500" value="150">
                 
-                <button class="btn-lang">Apply Filters</button>
+                <button class="btn-main">Apply Filters</button>
             </section>
         </aside>
 
@@ -106,8 +143,11 @@
                 <article class="listing-row border-ongoing">
                     <div class="col location">
                         <span class="label">Location</span>
-                        <h4>Jasper Cane Cafe</h4>
-                        <div class="buyer-indicator">Buyer: <strong>ml123</strong></div>
+                        <h4>Jasper Kane Cafe</h4>
+                        <div class="buyer-indicator">
+                            Buyer: <strong>hh0947</strong> 
+                            <span class="buyer-rating">4.8 ★</span>
+                        </div>
                     </div>
                     <div class="col amount"><span class="label">Amount</span><span class="val">4 Swipes</span></div>
                     <div class="col cost"><span class="label">Price</span><span class="val price">$12.00</span></div>
@@ -121,8 +161,35 @@
                     <div class="col actions">
                         <span class="label">Actions</span>
                         <div class="button-group">
-                            <button class="btn-confirm">Confirm</button>
                             <button class="btn-modify">Modify</button>
+                            <button class="btn-confirm">Confirm</button>
+                            <button class="btn-cancel">Cancel</button>
+                        </div>
+                    </div>
+                </article>
+                <article class="listing-row border-ongoing">
+                    <div class="col location">
+                        <span class="label">Location</span>
+                        <h4>Jasper Kane Cafe</h4>
+                        <div class="buyer-indicator">
+                            Seller: <strong>zc3250</strong> 
+                            <span class="buyer-rating">5.0 ★</span>
+                        </div>
+                    </div>
+                    <div class="col amount"><span class="label">Amount</span><span class="val">4 Swipes</span></div>
+                    <div class="col cost"><span class="label">Price</span><span class="val price">$12.00</span></div>
+                    
+                    <div class="col discount">
+                        <span class="label">Discount</span>
+                        <span class="discount-text">25% OFF</span>
+                    </div>
+
+                    <div class="col urgency"><span class="label">Urgency</span><span class="status-badge status-med">Med</span></div>
+                    <div class="col actions">
+                        <span class="label">Actions</span>
+                        <div class="button-group">
+                            <button class="btn-confirm">Confirm</button>
+                            <button class="btn-cancel">Cancel</button>
                         </div>
                     </div>
                 </article>
@@ -143,15 +210,18 @@
                         <span class="discount-text">10% OFF</span>
                     </div>
 
-                    <div class="col urgency"><span class="label">Urgency</span><span class="status-badge status-med">Med</span></div>
+                    <div class="col urgency"><span class="label">Urgency</span><span class="status-badge status-lo">Low</span></div>
                     <div class="col actions">
-                        <span class="label">Manage</span>
-                        <button class="btn-modify">Modify</button>
+                        <span class="label">Actions</span>
+                        <div class="button-group">
+                            <button class="btn-modify">Modify</button>
+                            <button class="btn-cancel">Cancel</button>
+                        </div>
                     </div>
                 </article>
             </div>
 
-            <h3 class="section-title">Sold</h3>
+            <h3 class="section-title">Ended Transactions</h3>
             <div class="listing-list">
                 <article class="listing-row sold-fade">
                     <div class="col location">

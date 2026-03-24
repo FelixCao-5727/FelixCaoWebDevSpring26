@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swipe Marketplace - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>    
+    <header class="main-header">
+        <div class="header-left">
+            <div class="logo-group">
+                <img src="media/nyu.png" alt="NYU Logo" class="header-logo">
+                <span class="logo-text">NYU</span>
+            </div>
+        </div>
+        <div class="title-box">
+            <h1>Swipe Marketplace</h1>
+        </div>
+        <div class="header-actions">
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <nav class="nav-menu">
+                <div class="nav-links">
+                    <a class="btn-main" href="sell.html">Sell</a>
+                    <button class="btn-main">Account</button>
+                    <button class="btn-main">Language</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="content-area modify-full-width">
+        <div class="banner_sub" style="height: 4rem; margin-bottom: 20px;">
+            <h2>Modify Active Postings</h2>
+        </div>
+
+        <h3 class="section-title">Ongoing Transactions</h3>
+        <div class="listing-list">
+            <article class="listing-row border-ongoing editing">
+                <div class="col location">
+                    <span class="label">Location</span>
+                    <select class="edit-input">
+                        <option selected value="jasper">Jasper Cane Cafe</option>
+                        <option value="lipton">Lipton Hall</option>
+                        <option value="weinstein">Weinstein Hall</option>
+                    </select>
+                    <div class="buyer-indicator">Buyer: <strong>ml123</strong></div>
+                </div>
+
+                <div class="col amount">
+                    <span class="label">Amount</span>
+                    <input type="number" class="edit-input small" value="4">
+                </div>
+
+                <div class="col cost">
+                    <span class="label">Price</span>
+                    <input type="text" class="edit-input small" value="$12.00">
+                </div>
+
+                <div class="col discount">
+                    <span class="label">Discount</span>
+                    <select class="edit-input small">
+                        <option value="10">10% OFF</option>
+                        <option value="25" selected>25% OFF</option>
+                        <option value="75">75% OFF</option>
+                    </select>
+                </div>
+
+                <div class="col urgency">
+                    <span class="label">Urgency</span>
+                    <select class="edit-input small"> 
+                        <option value="hi" selected>Hi</option>
+                        <option value="med">Med</option>
+                        <option value="lo">Lo</option>
+                    </select>
+                </div>
+
+                <div class="col actions">
+                    <span class="label">Update</span>
+                    <div class="button-group">
+                        <button class="btn-confirm">Save</button>
+                        <button class="btn-cancel">Cancel</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 40px;">To Be Sold</h3>
+        <div class="listing-list">
+            <article class="listing-row editing">
+                <div class="col location">
+                    <span class="label">Location</span>
+                    <select class="edit-input">
+                        <option selected>Lipton Hall</option>
+                        <option>Weinstein Hall</option>
+                    </select>
+                </div>
+                
+                <div class="col amount">
+                    <span class="label">Amount</span>
+                    <input type="number" class="edit-input small" value="2">
+                </div>
+
+                <div class="col cost">
+                    <span class="label">Price</span>
+                    <input type="text" class="edit-input small" value="$10.00">
+                </div>
+
+                <div class="col discount">
+                    <span class="label">Discount</span>
+                    <select class="edit-input small">
+                        <option value="10" selected>10% OFF</option>
+                        <option value="25">25% OFF</option>
+                    </select>
+                </div>
+
+                <div class="col urgency">
+                    <span class="label">Urgency</span>
+                    <select class="edit-input small"> 
+                        <option value="hi" selected>Hi</option>
+                        <option value="med">Med</option>
+                        <option value="lo">Lo</option>
+                    </select>
+                </div>
+
+                <div class="col actions">
+                    <span class="label">Manage</span>
+                    <div class="button-group">
+                        <button class="btn-confirm">Save</button>
+                        <button class="btn-cancel">Delete</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+</body>
+</html>

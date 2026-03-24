@@ -8,27 +8,69 @@
 </head>
 <body>
 
-   <header class="main-header">
-        <div class="header-left">
-            <div class="logo-group">
-                <img src="media/nyu.png" alt="NYU Logo" class="header-logo">
-                <span class="logo-text">NYU</span>
-            </div>
+<header class="main-header">
+    <div class="header-left">
+        <div class="logo-group">
+            <img src="media/nyu.png" alt="NYU" class="header-logo">
+            <span class="logo-text">NYU</span>
         </div>
-        
-        <div class="title-box">
-            <h1>Swipe Marketplace</h1>
-        </div>
+    </div>
+    
+    <div class="title-box">
+        <h1>Swipe Marketplace</h1>
+    </div>
 
-        <div class="header-actions">
-            <a class="btn-sell" href="sell.html">Sell</a>
-            <button class="btn-account">Account</button>
-            <button class="btn-lang">Language</button>
-        </div>
-    </header>
-    <div class="promo-banner">
+    <div class="header-actions">
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="nav-menu">
+            <div class="nav-links">
+                <a class="btn-main" href="sell.html">Sell</a>
+                <button class="btn-main">Account</button>
+                <button class="btn-main">Language</button>
+            </div>
+
+            <div class="mobile-filter-content">
+                <hr class="menu-divider">
+                <div class="menu-filters">
+                    <section class="filter-group">
+                        <h3>List By</h3>
+                        <label>Swipe Amount:</label>
+                        <select class="dropdown-select">
+                            <option value="default">Select...</option>
+                            <option value="amount-lo-hi">Lo-Hi</option>
+                            <option value="amount-hi-lo">Hi-Lo</option>
+                        </select>
+                    </section>
+                    <section class="filter-group">
+                        <h3>Filters</h3>
+                        <label>Swipes: 0~<span id="swipe-val">100</span></label>
+                        <input type="range" id="swipe-range" class="slider" min="0" max="100" value="10">
+                        
+                        <label>Price: $0~<span id="price-val">1500</span></label>
+                        <input type="range" id="price-range" class="slider" min="0" max="1500" value="150">
+                        
+                        <button class="btn-main">Apply</button>
+                    </section>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>    
+</header>
+   <div class="promo-banner">
         <div class="banner-image-container">
             <img src="media/Lipton-Horizontal.jpg" alt="Dining Hall Banner" class="full-width-banner">
+            
+            <div class="banner-overlay-content">
+                <h2>WELCOME TO NYU SWIPE MARKETPLACE </h2>
+                <h3>Buy and sell swipes DIRECTLY with students across the campus. </h3>
+            </div>
         </div>
 
         <div class="banner_sub">
@@ -37,6 +79,7 @@
     </div>
 
     <div class="page-layout">
+
         <aside class="sidebar">
             <section class="filter-group">
                 <h3>List By</h3>
@@ -67,7 +110,7 @@
                 <label>Price Range: $0~<span id="price-val">1500</span></label>
                 <input type="range" id="price-range" class="slider" min="0" max="1500" value="150">
                 
-                <button class="btn-lang">Apply Filters</button>
+                <button class="btn-main">Apply Filters</button>
             </section>
         </aside>
 
@@ -77,12 +120,12 @@
                     <div class="discount-tag">30% OFF</div>
                     <div class="card-header">
                         <div class="header-main">
-                            <h4>Jasper Cane Cafe</h4>
+                            <h4>Jasper Kane Cafe</h4>
                             <span class="status-badge status-hi">Hi</span>
                         </div>
                         <span class="price-tag">$36 for 4 swipes</span>
                     </div>
-                    <div class="card-media">Dining Hall Picture</div>
+                    <div class="card-jk"></div>
                     <div class="card-details">
                         <p>Average: $9.00/ea</p>
                         <div class="seller-info">
@@ -102,7 +145,7 @@
                         </div>
                         <span class="price-tag">$10 for 1 swipe</span>
                     </div>
-                    <div class="card-media">Dining Hall Picture</div>
+                    <div class="card-lipton"></div>
                     <div class="card-details">
                         <p>Average: $10.00/ea</p>
                         <div class="seller-info">
@@ -117,12 +160,12 @@
                     <div class="discount-tag">15% OFF</div>
                     <div class="card-header">
                         <div class="header-main">
-                            <h4>Jasper Cane Cafe</h4>
+                            <h4>Weinstein Hall</h4>
                             <span class="status-badge status-med">med</span>
                         </div>
                         <span class="price-tag">$40 for 4 swipes</span>
                     </div>
-                    <div class="card-media">Dining Hall Picture</div>
+                    <div class="card-weinstein"></div>
                     <div class="card-details">
                         <p>Average: $10.00/ea</p>
                         <p>Seller: 
@@ -136,189 +179,16 @@
                         <h4>Lipton Hall</h4>
                         <span class="price-tag">$12 for 1 swipe</span>
                     </div>
-                    <div class="card-media">Dining Hall Picture</div>
+                    <div class="card-lipton"></div>
                     <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
+                        <p>Average: $10.00/ea</p>
+                        <p>Seller: 
+                            <span class="username">td1145</span> 
+                            <span class="rating">5.0 /5 ★</span>
+                        </p>
                     </div>
                 </article>
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Weinstein Hall</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
-
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Jasper Cane Cafe</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
-
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Lipton Hall</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Weinstein Hall</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
-
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Jasper Cane Cafe</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
-
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Lipton Hall</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
-                <article class="listing-card">
-                    <a href="#" class="card-link">
-                        <div class="card-header">
-                            <h4>Jasper Cane Cafe</h4>
-                            <span class="price-tag">$12 for 4 swipes</span>
-                        </div>
-                        <div class="card-media">Dining Hall Picture</div>
-                        <div class="card-details">
-                            <p>Average: $11.45/ea</p>
-                            <p>Seller: td1919</p>
-                        </div>
-                    </a>
-                </article>
-
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Jasper Cane Cafe</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
-
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Lipton Hall</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Weinstein Hall</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
-
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Jasper Cane Cafe</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
-
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Lipton Hall</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Weinstein Hall</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
-
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Jasper Cane Cafe</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
-
-                <article class="listing-card">
-                    <div class="card-header">
-                        <h4>Lipton Hall</h4>
-                        <span class="price-tag">$12 for 1 swipe</span>
-                    </div>
-                    <div class="card-media">Dining Hall Picture</div>
-                    <div class="card-details">
-                        <p>Average: $12.00/ea</p>
-                        <p>Seller: td1145</p>
-                    </div>
-                </article>
+                
             </div>
         </main>
     </div>
