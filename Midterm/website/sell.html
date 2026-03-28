@@ -49,11 +49,11 @@
                     </section>
                     <section class="filter-group">
                         <h3>Filters</h3>
-                        <label>Swipes: 0~<span id="swipe-val">100</span></label>
-                        <input type="range" id="swipe-range" class="slider" min="0" max="100" value="10">
+                        <label>Swipes: 0~<span id="swipe-val-mobile">100</span></label>
+                        <input type="range" id="swipe-range-mobile" class="slider" min="0" max="100" value="10">
                         
-                        <label>Price: $0~<span id="price-val">1500</span></label>
-                        <input type="range" id="price-range" class="slider" min="0" max="1500" value="150">
+                        <label>Price: $0~<span id="price-val-mobile">1500</span></label>
+                        <input type="range" id="price-range-mobile" class="slider" min="0" max="1500" value="150">
                         
                         <button class="btn-main">Apply</button>
                     </section>
@@ -127,11 +127,11 @@
 
             <section class="filter-group">
                 <h3>Filters</h3>
-                <label>Swipe Amount: 0~<span id="swipe-val">100</span></label>
-                <input type="range" id="swipe-range" class="slider" min="0" max="100" value="10">
+                <label>Swipe Amount: 0~<span id="swipe-val-desktop">100</span></label>
+                <input type="range" id="swipe-range-desktop" class="slider" min="0" max="100" value="10">
                 
-                <label>Price Range: $0~<span id="price-val">1500</span></label>
-                <input type="range" id="price-range" class="slider" min="0" max="1500" value="150">
+                <label>Price Range: $0~<span id="price-val-desktop">1500</span></label>
+                <input type="range" id="price-range-desktop" class="slider" min="0" max="1500" value="150">
                 
                 <button class="btn-main">Apply Filters</button>
             </section>
@@ -256,35 +256,29 @@
             </div>
         </main>
 
-    <script>
-        const swipeSlider = document.getElementById('swipe-range');
-        const swipeVal = document.getElementById('swipe-val');
+        <script>
+            function setupSlider(sliderId, displayId) {
+                const slider = document.getElementById(sliderId);
+                const display = document.getElementById(displayId);
 
-        const priceSlider = document.getElementById('price-range');
-        const priceVal = document.getElementById('price-val');
-
-        swipeSlider.oninput = function() {
-            swipeVal.innerHTML = this.value;
-        }
-
-        priceSlider.oninput = function() {
-            priceVal.innerHTML = this.value;
-        }
-        const sliders = document.querySelectorAll('.slider');
-
-        function updateSliderTrack(slider) {
-            const value = (slider.value - slider.min) / (slider.max - slider.min) * 100;
-            // Applied to the background: Violet from 0 to 'value'%, Light Gray from 'value'% to 100%
-            slider.style.background = `linear-gradient(to right, #57068c 0%, #57068c ${value}%, #e0e0e0 ${value}%, #e0e0e0 100%)`;
-        }
-
-        // Initialize on page load and add listeners for movement
-        sliders.forEach(slider => {
-            updateSliderTrack(slider); // Set initial state
-            slider.addEventListener('input', () => updateSliderTrack(slider));
-        });
-    </script>
-</body>
+                if (slider && display) {
+                    slider.addEventListener('input', function() {
+                        display.innerHTML = this.value;
+                        updateSliderTrack(this);
+                    });
+                    updateSliderTrack(slider);
+                }
+            }
+            function updateSliderTrack(slider) {
+                const value = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+                slider.style.background = `linear-gradient(to right, #57068c 0%, #57068c ${value}%, #e0e0e0 ${value}%, #e0e0e0 100%)`;
+            }
+            setupSlider('swipe-range-mobile', 'swipe-val-mobile');
+            setupSlider('price-range-mobile', 'price-val-mobile');
+            setupSlider('swipe-range-desktop', 'swipe-val-desktop');
+            setupSlider('price-range-desktop', 'price-val-desktop');
+        </script>
+    </body>
 </html>
 </body>
 </html>

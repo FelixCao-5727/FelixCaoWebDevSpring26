@@ -98,6 +98,7 @@ body {
     gap: 30px;
     max-width: 1600px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
 .promo-banner {
@@ -179,9 +180,8 @@ body {
     display: flex;           
     align-items: center;     
     justify-content: center; 
-    
     box-sizing: border-box;
-    padding: 0;         
+    padding-bottom: 10px;    
 }
 
 .banner_sub h2 {
@@ -387,6 +387,11 @@ body {
     font-size: 1.2rem;
     border-left: 4px solid #57068c;
     padding-left: 10px;
+}
+.suggested-postings-wrapper{
+    width: 100%;
+    margin: 40px;
+    padding: 0 20px 0 20px;
 }
 
 .buyer-indicator {
@@ -1129,7 +1134,7 @@ select.status-badge option {
         width: 100%;
         margin-bottom: 20px;
         border-bottom: 2px solid #57068c;
-    }
+    }  
 
     .sidebar-folded-bar {
         display: flex;
@@ -1248,11 +1253,6 @@ select.status-badge option {
     .mobile-filter-content {
         display: block;
     }
-    
-}
-
-@media (max-width: 1024px) {
-
     .item-container {
         display: flex; 
         flex-direction: column;
@@ -1288,4 +1288,5 @@ select.status-badge option {
         max-width: 100% !important;
     }
 }
+
 
