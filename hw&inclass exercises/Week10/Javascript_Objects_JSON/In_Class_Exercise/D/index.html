@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Object vs JSON</title>
+  </head>
+  <body>
+    <script>
+      /*
+      // declare and assign values to our first object
+      const customer = {
+        name: 'Tony',
+        age: 23,
+        married: false,
+        pets: ['dog', 'cat', 'iguana'],
+        siblings: [
+          {name: 'Sally', age: 34, married: true},
+          {name: 'Billy', age: 16, married: false},
+        ],
+      }
+
+      // tony's age
+      console.log(customer.age)
+      // tony's pets all of them
+      for (let i = 0; i < customer.pets.length; i++) {
+        console.log(customer.pets[i])
+      }
+      // tony's sister marital status
+      console.log(customer.siblings[0].married)
+      // tony's third pet
+      console.log(customer.pets[2])
+
+      console.log(customer)
+      // convert and object into JSON so it can be shared with other applications
+      const customerJSON = JSON.stringify(customer)
+      console.log(customerJSON)
+
+      // sometimes we get JSON back from other applications and we need to convert it into an object to use it
+      const customerObj = JSON.parse(customerJSON)
+      console.log(customerObj)
+
+      */
+
+      // whenever we use await, we have to flag that function as async
+      // async function logApiResults() {}
+      const logApiResults = async () => {
+        // await = dear js please don't move past this line until it resolves
+        const response = await fetch(
+          'https://rickandmortyapi.com/api/character/1'
+        )
+        const result = await response.json()
+        console.log(result)
+        return result
+      }
+
+      logApiResults()
+        .then((data) => {
+          // now our returned result came in as data because we used .then() to add a callback function
+          // why? so we can chain events without await or async
+          // use template literals when you want to insert variables within a string
+          const message = `${data.name} is a ${data.species} from ${data.origin.name} and they are ${data.status}.`
+          console.log(message)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    </script>
+  </body>
+</html>
