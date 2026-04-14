@@ -1,0 +1,21 @@
+Implementation Strategy
+First, replace the "checkbox hack" mobile menu with the Bootstrap Navbar. This eliminates custom logic for the hamburger icon and uses the .navbar-expand-lg class to automatically handle the transition from a horizontal desktop menu to a vertical mobile dropdown. The current header-actions would be wrapped in a .container-fluid to maintain the wide layout.
+
+Next, the Grid System should replace the manual .page-layout. By using .row and .col classes, you can define how the sidebar and content area share space. For example, on the item page, the main image and info column would each take col-lg-6 (50%) on desktops, but default to col-12 (100%) on mobile, naturally creating the stacked look you requested.
+
+The listing cards should be refactored using the Bootstrap Card component. This provides a standardized container for the .discount-tag and .price-tag. To match the "marketplace" mobile view, you would use a row with row-cols-2 on mobile and row-cols-md-3 row-cols-xl-4 on desktop, ensuring the grid is always perfectly aligned without manual media queries.
+
+To-Do List for Integration
+Link Bootstrap: Add the Bootstrap 5 CDN link to the <head> of all HTML files.
+
+Migrate Header: Replace the current <header> structure with the Bootstrap .navbar component. Use d-none d-lg-flex utility classes to hide/show desktop buttons.
+
+Refactor Main Grid: Wrap the .page-layout in a .container-xl. Change the sidebar to col-lg-3 and the main content to col-lg-9.
+
+Standardize Buttons: Replace .btn-main styles by extending Bootstrap’s .btn class. Map your #57068c color to a custom .btn-nyu class.
+
+Card Layout: Move card article tags into a Bootstrap grid. Use the g-3 (gutter) class to handle spacing between cards automatically.
+
+Cleanup: Remove redundant @media queries from style.css that handle widths, floats, or basic stacking, as Bootstrap utilities now manage these.
+
+Test Responsiveness: Use browser developer tools to ensure the col-12 stacking works correctly on small phone screens (375px).
