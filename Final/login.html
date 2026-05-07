@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | NYU Swipe Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+
+    <div class="login-card">
+        <div class="logo-section">
+            <img src="media/nyu.png" alt="NYU Logo" class="nyu-logo">
+            <div class="title-block">
+                <span>Swipe Marketplace</span>
+            </div>
+        </div>
+
+        <form class="login-form" onsubmit="return false;">
+            <div class="form-group">
+                <label for="netid">NETID</label>
+                <input type="text" id="netid" name="netid" placeholder="e.g. ab123">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">PASSWORD</label>
+                <input type="password" id="password" name="password">
+            </div>
+
+            <button type="button" class="login-btn" onclick="window.location.href='自分のアカウント.html'">Login</button>
+        </form>
+
+        <div class="footer-links">
+            <a href="#">Forgot Password?</a> | <a href="#">Need Help?</a>
+        </div>
+
+        <div class="nyu-branding">
+            NEW YORK UNIVERSITY
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYU Swipe Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        @media (max-width: 768px) {
+            .dining-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-wrapper">
+        <header class="main-header">
+            <div class="header-inner">
+                <div class="logo-section">
+                    <div class="nyu-image-container">
+                        <img src="media/nyu.png" alt="NYU Logo" class="nyu-logo">
+                    </div>
+                    <div class="title-block">
+                        <span>NYU Swipe Marketplace</span>
+                    </div>
+                </div>
+                <div class="header-icons">
+                    <button class="text-btn" onclick="window.location.href='account.html'">ACCOUNT</button>
+                    
+                    <label for="menu-toggle" class="hamburger">
+                        <span></span><span></span><span></span>
+                    </label>
+                </div>
+            </div>
+
+            
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+            
+            <nav class="nav-menu">
+                <div class="nav-links">
+                    <button class="text-btn" onclick="window.location.href='welcome.html'">HOME</button>
+                <button class="text-btn" onclick="window.location.href='market.html'">MARKETPLACE</button>
+                <button class="text-btn" onclick="window.location.href='sell.html'">SELL</button>
+                <button class="text-btn" onclick="window.location.href='about.html'">ABOUT</button>
+                </div>
+            </nav>
+        </header>
+
+        
+        <nav class="nav-bar">
+            <div class="nav-inner">
+                <button class="text-btn" onclick="window.location.href='welcome.html'">HOME</button>
+                <button class="text-btn" onclick="window.location.href='market.html'">MARKETPLACE</button>
+                <button class="text-btn" onclick="window.location.href='sell.html'">SELL</button>
+                <button class="text-btn" onclick="window.location.href='about.html'">ABOUT</button>
+            </div>
+        </nav>
+    </div>
+
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <span class="current">ABOUT</span>
+        </div>
+    </div>
+    <div class="promo-banner" id="welcome-banner">
+        <div class="banner-image-container">
+            <img src="media/Lipton-Horizontal.jpg" alt="Dining Hall Banner" class="full-width-banner">
+            <div class="banner-overlay-content">
+                <h2><p>“你走了，我们，吃什么?”</p><p>“是啊，吃什么?”</p></h2>
+                <h3>——曹操 et al.，《新三国》, 2011</h3>          
+            </div>
+        </div>
+    </div>
+
+    <div class="dining-section-container">
+        <div class="about-content">
+            <h2>What inspired this page?</h2>
+            <p>
+                A daily occuring conversation between me and my friend sparked the idea for a swipe trading platform. 
+                The most time-consuming, and yet important issue everyday: deciding what to eat for lunch.
+            </p>
+            <p>——再让我听到新三国的梗，我就扎聋自己的耳朵，自刎归天！</p>
+            <p>——龙，可是帝王之征啊。</p>
+            <p><button id="music-toggle" class="text-btn">——释怀了。</button></p>
+            <p>
+                We noticed the ever-existing problem of undesired amounts of swipes owned across students, and I set out to adress this.
+            </p>
+            <h2>About NYU Swipe Marketplace</h2>
+            <p>
+                <strong>NYU Swipe Marketplace</strong> is a student‑run platform to adress the premier student-led solution to one of campus life’s most persistent headaches: the meal plan gap. Whether you’re a senior with a surplus of credits or a first-year running low on fuel during finals week, our platform is designed to keep the NYU community fed, frugal, and connected.
+            </p>
+            <h3>Empowering the Student Economy</h3>
+            <ul>
+                <div>
+                    The primary advantage of our platform is mutual value. We recognize that the traditional dining model can be rigid; meal swipes often expire at the end of the term, representing lost money for students. By leveraging real-time data and an intuitive interface, we’ve taken the "swipe struggle" out of the equation. Welcome to a smarter way to dine at NYU. Beyond the financials, the marketplace fosters a sustainable campus ecosystem. We reduce food waste by ensuring credits are actually utilized and build a stronger sense of community by facilitating face-to-face interactions among students from Tandon to Washington Square.
+                </div>
+            </ul>
+            <h3>Simple, Seamless, Secure</h3>
+            <ul>
+                <div>
+                    <p>Our platform is built for speed, fitting perfectly into a busy student schedule.</p>
+                    <p>List or Browse: Sellers click "Sell" to post their availability, specifying the dining hall (like Lipton or Weinstein), the quantity of swipes, and the price.</p>
+                    <p>Smart Filtering: Buyers use our marketplace grid to filter by price, location, or urgency. If you need a meal right now, our urgency tags help you find a seller already on-site.</p>
+                    <p>The Transaction: Once a buyer finds a suitable listing, the platform facilitates the connection. Students meet at the designated dining hall entrance to complete the swipe-in. </p>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="marketplace.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            revealOnScroll('.promo-banner');
+            revealOnScroll('.dining-card');
+            revealOnScroll('.about-content');
+        });
+    </script>
+    <script>
+    (function() {
+        const button = document.getElementById('music-toggle');
+        if (!button) return;  
+
+        
+        const audio = new Audio('media/赵季平 - 关羽之歌.mp3');
+        audio.loop = true;              
+
+        function updateButton(state) {
+            button.textContent = state;
+        }
+
+        button.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play().then(() => updateButton('——还特么搁着释怀哪（恼'))
+                        .catch(err => { alert('Audio playback failed. Check file path.'); console.error(err); });
+            } else {
+                audio.pause();
+                updateButton('——释怀了。');
+            }
+        });
+
+        
+        audio.addEventListener('——还特么搁着释怀哪（恼', () => {
+            updateButton('——释怀了。');
+        });
+    })();
+    </script>
+</body>
+</html>

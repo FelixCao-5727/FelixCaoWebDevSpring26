@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail | NYU Swipe Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-wrapper">
+        <header class="main-header">
+            <div class="header-inner">
+                <div class="logo-section">
+                    <div class="nyu-image-container">
+                        <img src="media/nyu.png" alt="NYU Logo" class="nyu-logo">
+                    </div>
+                    <div class="title-block">
+                        <span id="welcome-message">NYU Swipe Marketplace</span>
+                    </div>
+                </div>
+                <div class="header-icons">
+                    <button class="text-btn" onclick="window.location.href='account.html'">ACCOUNT</button>
+                </div>
+            </div>
+        </header>
+
+        <nav class="nav-bar">
+            <div class="nav-inner">
+                <button class="text-btn" onclick="window.location.href='welcome.html'">HOME</button>
+                <button class="text-btn" onclick="window.location.href='market.html'">MARKETPLACE</button>
+                <button class="text-btn" onclick="window.location.href='sell.html'">SELL</button>
+                <button class="text-btn" onclick="window.location.href='about.html'">ABOUT</button>
+            </div>
+        </nav>
+
+        
+        <div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                HOME / MARKETPLACE / <span id="bc-location">JASPER KANE</span>
+            </div>
+        </div>
+    </div>
+    
+
+    <main class="product-container">
+        <section class="gallery-column">
+            <div class="main-image-frame">
+                <img id="item-image" src="media/jk.jpg" alt="Dining Hall">
+            </div>
+        </section>
+
+        <section class="info-column">
+            <h1 id="item-title" class="item-title">JASPER KANE DINING HALL ACCESS - 5 SWIPES</h1>
+            <div class="price-display">
+                $<span id="item-price">45.00</span> 
+            </div>
+
+            <div class="specs-list">
+                <div>Seller: <span id="seller-name">ac0721</span></div>
+                <div><span id="urgency-level"></span></div>
+                <div>Date Posted: <span id="date-posted">XXXX/XX/XX</span></div>
+                <div>Listing No: <span id="listing-no">XXXXXX</span></div>
+            </div>
+
+            <div class="status-badge">AVAILABLE</div>
+
+            <div class="action-buttons">
+                <button class="primary-btn">Contact Seller / Purchase</button>     
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="marketplace.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+        
+        const params = new URLSearchParams(window.location.search);
+        const listingId = params.get('id');
+        if (!listingId) {
+            document.querySelector('.item-title').innerText = 'No listing specified.';
+            return;
+        }
+
+        
+        const { data: listing, error } = await _supabase
+            .from('listing')
+            .select('*')
+            .eq('listing_id', listingId)
+            .single();
+
+        if (error || !listing) {
+            document.querySelector('.item-title').innerText = 'Listing not found.';
+            return;
+        }
+
+        
+        const [locRes, urgRes, userRes] = await Promise.all([
+            _supabase.from('location').select('*'),
+            _supabase.from('urgency').select('*'),
+            _supabase.from('user').select('*')
+        ]);
+        const locations = Object.fromEntries(locRes.data.map(l => [l.location_id, l.location]));
+        const urgencies = Object.fromEntries(urgRes.data.map(u => [u.urgency_id, u.urgency]));
+        const users = Object.fromEntries(userRes.data.map(u => [u.net_id, `${u.first_name} ${u.last_name}`]));
+
+        const locationName = locations[listing.preferred_location_id] || 'Unknown';
+        const urgencyText = urgencies[listing.urgency_id] || 'Medium';
+        const sellerName = users[listing.seller_net_id] || listing.seller_net_id || 'Anonymous';
+
+        
+        let imgFileName = 'default.jpg';
+        if (locationName.includes('Jasper')) imgFileName = 'jk.jpg';
+        else if (locationName.includes('Lipton')) imgFileName = 'Lipton-Horizontal.jpg';
+        else if (locationName.includes('Weinstein')) imgFileName = 'weinstein.jpg';
+        else if (locationName.includes('Palladium')) imgFileName = 'palladium.jpg';
+        else if (locationName.includes('370')) imgFileName = '370.jpg';
+        else if (locationName.includes('181')) imgFileName = '181.jpg';
+        else if (locationName.includes('North')) imgFileName = '3rdn.jpg';
+        else if (locationName.includes('Kimmel')) imgFileName = 'Kimmel.jpg';
+        else if (locationName.includes('Dunkin')) imgFileName = 'dunkin.jpg';
+        else if (locationName.includes('Crave')) imgFileName = 'crave.jpg';
+        else if (locationName.includes('Burger')) imgFileName = 'paulson.jpg';
+
+        
+        document.getElementById('item-image').src = `media/${imgFileName}`;
+        document.getElementById('item-title').innerText = `${locationName.toUpperCase()} - ${listing.amount} SWIPE(S)`;
+        document.getElementById('item-price').innerText = listing.price.toFixed(2);
+        document.getElementById('seller-name').innerText = sellerName;
+        const raw = urgencyText.toLowerCase();
+        let statusClass = 'status-med';
+        if (raw.includes('urgent')) statusClass = 'status-urg';
+        else if (raw.includes('high')) statusClass = 'status-hi';
+        else if (raw.includes('low')) statusClass = 'status-lo';
+        else if (raw.includes('no rush')) statusClass = 'status-no-rush';
+        const urgencyEl = document.getElementById('urgency-level');
+        urgencyEl.innerHTML = `<span class="status-bar ${statusClass}">${urgencyText}</span>`;
+        document.getElementById('bc-location').innerText = locationName;
+
+        
+        const postedDate = new Date(listing.posted_date);
+        document.getElementById('date-posted').innerText = postedDate.toLocaleDateString();
+        document.getElementById('listing-no').innerText = listing.listing_id;
+        });
+        </script>
+</body>
+</html>

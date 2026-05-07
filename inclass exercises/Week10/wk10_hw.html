@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS Objects Lesson</title>
+  </head>
+  <body>
+    <h1>Open the Console to see your output!</h1>
+
+    <script>
+      // Defining a basic object
+    const student = {
+        firstName: "Alex",
+        lastName: "Someone",
+        age: 20,
+        isEnrolled: true,
+        courses: ["Web Dev", "UI/UX", "Data Science"],
+        
+        // A method within an object
+        getFullName: function() {
+            return `${this.firstName} ${this.lastName}`;
+        }
+    };
+    // Using a Constructor Function (Older style)
+    function Book(title, author, year) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.getSummary = function() {
+            return `${this.title} was written by ${this.author} in ${this.year}`;
+        };
+    }
+
+    // Using the ES6 Class Syntax (Modern style)
+    class Product {
+        constructor(name, price, stock) {
+            this.name = name;
+            this.price = price;
+            this.stock = stock;
+        }
+
+        applyDiscount(percent) {
+            this.price -= (this.price * (percent / 100));
+            return `New price is ${this.price}`;
+        }
+    }
+
+    const laptop = new Product("MacBook", 1200, 5);
+    console.log(laptop.applyDiscount(10));
+
+    // Accessing properties
+    console.log(student.firstName); // Dot notation
+    console.log(student['lastName']); // Bracket notation
+    console.log(student.getFullName()); // Calling a method
+    const galleryItems = [
+        { id: 1, title: "Sunset", url: "img1.jpg", likes: 15 },
+        { id: 2, title: "Mountain", url: "img2.jpg", likes: 24 },
+        { id: 3, title: "Ocean", url: "img3.jpg", likes: 9 }
+    ];
+
+    // Example: Finding an object in the array
+    const popularPost = galleryItems.find(item => item.likes > 20);
+    console.log(popularPost.title); // "Mountain"
+
+    // Example: Updating a property
+    galleryItems[0].likes += 1;
+    </script>
+  </body>
+</html>

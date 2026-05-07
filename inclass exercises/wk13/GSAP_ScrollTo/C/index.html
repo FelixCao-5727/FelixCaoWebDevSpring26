@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Elevator Scrolling Example</title>
+    <style type="text/css" media="screen">
+      body{
+        background-color: #000;
+        color:white;
+        padding-top: 100px;;
+      }
+      #main{
+        margin: 0 auto;
+        width: 800px;
+      }
+      section{
+        padding: 10px 0 80px 0;
+        height: 200px;
+      }
+      section h2{
+        font-size: 48px;
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 20px;
+      }
+      ul{
+        position: fixed;
+        top:40%;
+        right:0;
+        list-style-type: none;
+      }
+      li{
+        width: 30px;
+        padding: 10px;
+        margin-bottom: 1px;
+        color: #6cf;
+        border-left: 10px solid #000;
+        cursor: pointer;
+        transition: all 0.5s;
+      }
+      .active{
+        color: #fff;
+        border-left: 20px solid #fff;
+        line-height: 30px;
+
+      }
+    </style>
+  </head>
+  <body>
+    <!-- elevator buttons -->
+    <ul>
+      <li id="floor5Btn">5</li>
+      <li id="floor4Btn">4</li>
+      <li id="floor3Btn">3</li>
+      <li id="floor2Btn">2</li>
+      <li id="floor1Btn">1</li>
+    </ul>
+
+    <!-- floors -->
+    <div id="main">
+      <section id="floor5Panel">
+        <h2>Floor 5</h2>
+      </section>
+
+      <section id="floor4Panel">
+        <h2>Floor 4</h2>
+      </section>
+
+      <section id="floor3Panel">
+        <h2>Floor 3</h2>
+      </section>
+
+      <section id="floor2Panel">
+        <h2>Floor 2</h2>
+      </section>
+
+      <section id="floor1Panel">
+        <h2>Floor 1</h2>
+      </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
+    <script type="text/javascript"></script>
+  </body>
+</html>

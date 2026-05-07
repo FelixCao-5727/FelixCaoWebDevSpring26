@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYU Swipe Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-wrapper">
+        <header class="main-header">
+            <div class="header-inner">
+                <div class="logo-section">
+                    <div class="nyu-image-container">
+                        <img src="media/nyu.png" alt="NYU Logo" class="nyu-logo">
+                    </div>
+                    <div class="title-block">
+                        <span>NYU Swipe Marketplace</span>
+                    </div>
+                </div>
+                <div class="header-icons">
+                    <button class="text-btn" onclick="window.location.href='account.html'">ACCOUNT</button>
+                </div>
+            </div>
+        </header>
+        <nav class="nav-bar">
+            <div class="nav-inner">
+                <button class="text-btn" onclick="window.location.href='welcome.html'">HOME</button>
+                <button class="text-btn" onclick="window.location.href='market.html'">MARKETPLACE</button>
+                <button class="text-btn" onclick="window.location.href='sell.html'">SELL</button>
+                <button class="text-btn" onclick="window.location.href='about.html'">ABOUT</button>
+            </div>
+        </nav>
+    </div>
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <span class="current">HOME</span>
+        </div>
+    </div>
+    <div class="promo-banner" id="welcome-banner">
+        <div class="banner-image-container">
+            <img src="media/Lipton-Horizontal.jpg" alt="Dining Hall Banner" class="full-width-banner">
+            <div class="banner-overlay-content">
+                <h2 id="welcome-message">WELCOME TO NYU SWIPE MARKETPLACE</h2>
+                <h3>Buy and sell swipes DIRECTLY with students across the campus at no extra cost.</h3>
+            </div>
+        </div>
+    </div>
+    <div id="dining-locations" class="dining-section-container">
+    <div class="dining-section-inner">
+        <h2 class="dining-section-title">DINING LOCATIONS ON CAMPUS</h2>
+        <div class="dining-grid">
+        
+        <a href="?location=Jasper+Kane" class="dining-card">
+            <div class="dining-card-img">
+            <img src="media/jk.jpg" alt="Jasper Kane Café">
+            </div>
+            <h3>Jasper Kane Café</h3>
+            <p>Brooklyn’s cozy campus café with fresh sandwiches, salads, and the best sushi on campus.</p>
+        </a>
+
+        <a href="?location=Lipton" class="dining-card">
+            <div class="dining-card-img">
+            <img src="media/Lipton-Horizontal.jpg" alt="Lipton Dining Hall">
+            </div>
+            <h3>Lipton Dining Hall</h3>
+            <p>The main Washington Square dining hall, offering a wide variety of global cuisines and comfort food.</p>
+        </a>
+
+        <a href="?location=Weinstein" class="dining-card">
+            <div class="dining-card-img">
+            <img src="media/weinstein.jpg" alt="Downstein / Upstein">
+            </div>
+            <h3>Weinstein Hall</h3>
+            <p>Two distinct eateries under one roof: a quick‑service café and a sit‑down restaurant.</p>
+        </a>
+
+        <a href="?location=Palladium" class="dining-card">
+            <div class="dining-card-img">
+            <img src="media/palladium.jpg" alt="Palladium Dining Hall">
+            </div>
+            <h3>Palladium Dining Hall</h3>
+            <p>A modern, spacious dining hall famous for its pasta station and vegan options.</p>
+        </a>
+
+        <a href="?location=Kimmel" class="dining-card">
+            <div class="dining-card-img">
+            <img src="media/Kimmel.jpg" alt="The Marketplace at Kimmel">
+            </div>
+            <h3>The Marketplace at Kimmel</h3>
+            <p>Convenient food court in the Kimmel Center, perfect for a quick bite between classes.</p>
+        </a>
+
+        <a href="?location=Third+North" class="dining-card">
+            <div class="dining-card-img">
+            <img src="media/3rdn.jpg" alt="Third North Dining Hall">
+            </div>
+            <h3>Third North Dining Hall</h3>
+            <p>The residential hall favorite, known for its late‑night breakfast and custom omelettes.</p>
+        </a>
+
+        <a href="?location=Crave+NYU" class="dining-card">
+            <div class="dining-card-img">
+            <img src="media/crave.jpg" alt="Crave NYU">
+            </div>
+            <h3>Crave NYU</h3>
+            <p>Artisanal sandwiches, grain bowls, and sustainably sourced coffee in a bright setting.</p>
+        </a>
+
+        <a href="?location=Cafe+181" class="dining-card">
+            <div class="dining-card-img">
+            <img src="media/181.jpg" alt="Café 181">
+            </div>
+            <h3>Café 181</h3>
+            <p>Grab‑and‑go salads, sushi, and snacks located on the 2nd floor of the Paulson Center.</p>
+        </a>
+
+        <a href="?location=Cafe+370" class="dining-card">
+            <div class="dining-card-img">
+            <img src="media/370.jpg" alt="Café 370">
+            </div>
+            <h3>Café 370</h3>
+            <p>Jay Street’s hidden gem for espresso, pastries, and light lunch fare.</p>
+        </a>
+
+        <a href="?location=Dunkin" class="dining-card">
+            <div class="dining-card-img">
+            <img src="media/dunkin.jpg" alt="Dunkin' (UHall)">
+            </div>
+            <h3>Dunkin’ (University Hall)</h3>
+            <p>Your classic Dunkin’ fix right in Union Square – coffee, donuts, and more.</p>
+        </a>
+
+        <a href="?location=True+Burger" class="dining-card">
+            <div class="dining-card-img">
+            <img src="media/paulson.jpg" alt="True Burger">
+            </div>
+            <h3>True Burger (Paulson Center)</h3>
+            <p>Gourmet burgers, fries, and milkshakes made with high‑quality ingredients.</p>
+        </a>
+        
+        </div>
+    </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="marketplace.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        revealOnScroll('.promo-banner');
+        revealOnScroll('.dining-card');
+    });
+</script>
+</body>
+</html>

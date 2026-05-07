@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Simple Timeline</title>
+    <style type="text/css" media="screen">
+      body {
+        margin: 0;
+        text-align: center;
+      }
+
+      .progress {
+        position: relative;
+        z-index: 5;
+        width: 100%;
+        height: 10px;
+        background-color: black;
+      }
+
+      h2,
+      p {
+        text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="progress"></div>
+    <div id="page-wrap">
+      <h2>Hello Green Sock</h2>
+      <h2>You're Awesome</h2>
+      <p id="description">
+        I just made my first timeline and thats pretty cool!
+      </p>
+    </div>
+    <!--
+      Older free without subscription versions
+      https://github.com/greensock/GSAP
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+    <!-- Our Script using GSAP Library Functions -->
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', () => {
+        // store out elements as variables- remember you don't need to do this in green sock at all
+        const headers = document.getElementsByTagName('H2')
+        const hello = headers[0]
+        const awesome = headers[1]
+        const text = document.getElementById('description')
+        const progress = document.getElementsByClassName('progress')
+        const bg = document.querySelector('#page-wrap')
+
+        // make a timeline to store our animations in order
+        const tl = new TimelineLite()
+
+        // now we add our animations in order to our timeline,
+        // notice how we don't have to guess at delays anymore
+        tl.from(bg, {opacity: 0, duration: 1})
+          .from(hello, 0.5, {
+            left: -1000,
+            opacity: 0,
+          })
+          .from(awesome, 0.5, {right: -1000, opacity: 0})
+          .from(text, 0.5, {bottom: -500, opacity: 0})
+          .from(
+            progress,
+            tl.duration(),
+            {
+              // tl.duration() calculates the length of the animation to this point
+              scaleX: 0,
+              transformOrigin: 'left',
+              ease: Linear.easeNone,
+            },
+            0
+          ) // the 0 after the options object says start at second 0 in my timeline
+          .to(progress, 0.5, {opacity: 0, top: -1})
+      })
+    </script>
+  </body>
+</html>

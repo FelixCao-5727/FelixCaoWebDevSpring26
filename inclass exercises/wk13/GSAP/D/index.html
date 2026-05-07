@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello GSAP Tweens</title>
+
+    <style type="text/css" media="screen">
+      #sb {
+        position: absolute;
+        top: 700px;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="./img/soccer-ball.png" id="sb" />
+    <!-- 5 basketballs to bounce -->
+    <img src="./img/basket-ball.png" class="bball" />
+    <img src="./img/basket-ball.png" class="bball" />
+    <img src="./img/basket-ball.png" class="bball" />
+    <img src="./img/basket-ball.png" class="bball" />
+    <img src="./img/basket-ball.png" class="bball" />
+
+    <!-- Load GSAP core library at the bottom of our body tag -->
+    <!--
+      Older free without subscription versions
+      https://github.com/greensock/GSAP
+    -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <!-- Our Script using GSAP Library Functions -->
+    <script type="text/javascript">
+      // grab and store our soccer ball as a variable
+      // const sb = document.getElementById('sb')
+      // Another way to grab by any selector
+      const sb = document.querySelector('#sb')
+
+      // use GSAP's tweens to animate our soccer ball, rotate and scale it over time as well
+      // gsap.to(thingTOAnimate, optionalDuration, {options object})
+      gsap.to(sb, 1, {
+        x: 800,
+        y: -500,
+        rotation: 720,
+        scale: 0.5,
+        delay: 1,
+        ease: 'elastic.out',
+      })
+
+      // now we will grab the basketballs and bounce them one by one. we will use GSAP's queryselector function
+      gsap.to('.bball', 1, {
+        y: 500,
+        rotation: 360,
+        delay: 3,
+        ease: 'bounce.out',
+        stagger: {
+          each: 0.5,
+        },
+      })
+
+      // GSAP even allows a callback function when the animation completes
+      function imDone() {
+        alert("I'm Done!")
+      }
+      // fade out soccer and bballs
+      gsap.to('#sb, .bball', 5, {
+        opacity: 0,
+        delay: 10, // guessing because our animations are all chaining together
+        onComplete: imDone,
+      })
+    </script>
+  </body>
+</html>

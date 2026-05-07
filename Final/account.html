@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - NYU Swipe Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-wrapper">
+        <header class="main-header">
+            <div class="header-inner">
+                <div class="logo-section">
+                    <div class="nyu-image-container">
+                        <img src="media/nyu.png" alt="NYU Logo" class="nyu-logo">
+                    </div>
+                    <div class="title-block">
+                        <span id="welcome-message">NYU Swipe Marketplace</span>
+                    </div>
+                </div>
+                <div class="header-icons">
+                    <button class="text-btn">LOGOUT</button>
+                </div>
+            </div>
+        </header>
+        <nav class="nav-bar">
+            <div class="nav-inner">
+                <button class="text-btn" onclick="window.location.href='welcome.html'">HOME</button>
+                <button class="text-btn" onclick="window.location.href='market.html'">MARKETPLACE</button>
+                <button class="text-btn" onclick="window.location.href='sell.html'">SELL</button>
+                <button class="text-btn" onclick="window.location.href='about.html'">ABOUT</button>
+            </div>
+        </nav>
+    </div>
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <span class="current">HOME / MY ACCOUNT</span>
+        </div>
+    </div>
+
+    <main class="marketplace-wrapper">
+        <section class="content-area">
+            <div class="account-profile-card">
+                <img src="media/defaultavatar.png" alt="Avatar" class="account-avatar">
+                <div class="account-user-info">
+                    <h3>Chihaya, Anon</h3>
+                    <p>NetID: <strong>ac0721</strong></p>
+                    <p>Rating: <span class="rating-stars">★★★★★</span> (4.9)</p>
+                </div>
+                <div class="account-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">TOTAL SOLD</span>
+                        <span class="stat-value">42</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-heading" style="margin-top: 40px;">
+                <h2>RECENT SALES ACTIVITY</h2>
+            </div>
+
+            <div class="account-transaction-list">
+                <div class="transaction-row header">
+                    <span>DATE</span>
+                    <span>ACTIVITY</span>
+                    <span>LOCATION</span>
+                    <span class="txt-right">STATUS</span>
+                </div>
+                
+                <div class="transaction-row">
+                    <span>2024.05.20</span>
+                    <span class="bold">5 Swipes Sold</span>
+                    <span>Jasper Kane</span>
+                    <span class="txt-right status-done">COMPLETED</span>
+                </div>
+
+                <div class="transaction-row">
+                    <span>2024.05.18</span>
+                    <span class="bold">2 Swipes Sold</span>
+                    <span>Lipton Hall</span>
+                    <span class="txt-right status-done">COMPLETED</span>
+                </div>
+                
+                <div class="transaction-row">
+                    <span>2024.05.15</span>
+                    <span class="bold">3 Swipes Sold</span>
+                    <span>Weinstein</span>
+                    <span class="txt-right status-cancelled">CANCELLED</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

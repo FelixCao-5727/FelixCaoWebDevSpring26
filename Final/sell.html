@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swipe Marketplace – Sell</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+
+    
+    <div class="top-wrapper">
+        <header class="main-header">
+            <div class="header-inner">
+                <div class="logo-section">
+                    <div class="nyu-image-container">
+                        <img src="media/nyu.png" alt="NYU Logo" class="nyu-logo">
+                    </div>
+                    <div class="title-block">
+                        <span id="welcome-message">NYU Swipe Marketplace</span>
+                    </div>
+                </div>
+                <div class="header-icons">
+                    <button class="text-btn" onclick="window.location.href='account.html'">ACCOUNT</button>
+                    
+                    <label for="menu-toggle" class="hamburger">
+                        <span></span><span></span><span></span>
+                    </label>
+                </div>
+            </div>
+
+            
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+            
+            <nav class="nav-menu">
+                <div class="nav-links">
+                    <button class="text-btn" onclick="window.location.href='welcome.html'">HOME</button>
+                    <button class="text-btn" onclick="window.location.href='market.html'">MARKETPLACE</button>
+                    <button class="text-btn" onclick="window.location.href='sell.html'">SELL</button>
+                    <button class="text-btn" onclick="window.location.href='about.html'">ABOUT</button>
+                </div>
+                
+                <div class="mobile-posting-bar">
+                    <hr class="menu-divider">
+                    <div class="posting-bar-mobile">
+                        <span class="posting-label">NEW POSTING:</span>
+                        <div class="posting-fields">
+                            
+                            <select id="post-location-mobile" name="post-location-mobile" class="post-input full-width">
+                                <option value="" disabled selected>Dining Hall</option>
+                                <option value="The Marketplace at Kimmel">The Marketplace at Kimmel</option>
+                                <option value="Crave NYU (Paulson Center, 6th Fl)">Crave NYU (Paulson Center, 6th Fl)</option>
+                                <option value="True Burger (Paulson Center, 6th Fl)">True Burger (Paulson Center, 6th Fl)</option>
+                                <option value="Café 181 (Paulson Center, 2nd Fl)">Café 181 (Paulson Center, 2nd Fl)</option>
+                                <option value="Café 370 (370 Jay St, Brooklyn)">Café 370 (370 Jay St, Brooklyn)</option>
+                                <option value="Jasper Kane Café (Brooklyn)">Jasper Kane Café (Brooklyn)</option>
+                                <option value="Dunkin' (UHall, Union Square)">Dunkin' (UHall, Union Square)</option>
+                                <option value="Third North Dining Hall">Third North Dining Hall</option>
+                                <option value="Lipton Dining Hall">Lipton Dining Hall</option>
+                                <option value="Palladium Dining Hall">Palladium Dining Hall</option>
+                                <option value="Downstein (Weinstein Hall)">Downstein (Weinstein Hall)</option>
+                                <option value="Upstein (Weinstein Hall)">Upstein (Weinstein Hall)</option>
+                            </select>
+
+                            
+                            <div class="inline-row">
+                                <select id="post-urgency-mobile" name="post-urgency-mobile" class="post-input small">
+                                    <option value="" disabled selected>Urgency</option>
+                                    <option value="Hi">Urgent</option>
+                                    <option value="Hi">High</option>
+                                    <option value="Med">Medium</option>
+                                    <option value="Lo">Low</option>
+                                </select>
+                                <input id="post-qty-mobile" name="post-qty-mobile" type="number" placeholder="Qty" class="post-input tiny">
+                                <input id="post-price-mobile" name="post-price-mobile" type="text" placeholder="Price" class="post-input tiny">
+                            </div>
+
+                            
+                            <button id="btn-post-swipe-mobile" class="btn-post-white full-width">Post Swipe</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mobile-filter-content">
+                    <hr class="menu-divider">
+                    <div class="menu-filters">
+                        <section class="filter-group">
+                            <h3>Location</h3>
+                            <ul class="filter-list" id="location-filters-mobile">
+                                <li class="filter-item" data-loc="all">ALL LOCATIONS</li>
+                                <li class="filter-item" data-loc="Jasper Kane">JASPER KANE</li>
+                                <li class="filter-item" data-loc="Lipton">LIPTON</li>
+                                <li class="filter-item" data-loc="Weinstein">WEINSTEIN</li>
+                                <li class="filter-item" data-loc="Palladium">PALLADIUM</li>
+                                <li class="filter-item" data-loc="Kimmel">KIMMEL</li>
+                                <li class="filter-item" data-loc="Third North">THIRD NORTH</li>
+                                <li class="filter-item" data-loc="Crave NYU">CRAVE NYU</li>
+                                <li class="filter-item" data-loc="Dunkin">DUNKIN</li>
+                                <li class="filter-item" data-loc="Cafe 181">CAFE 181</li>
+                                <li class="filter-item" data-loc="Cafe 370">CAFE 370</li>
+                            </ul>
+                            
+                        </section>
+                        <section class="filter-group">
+                            <div class="price-slider-area">
+                                <label>Swipe Amount: 0~<span id="swipe-val-mobile">100</span></label>
+                                <input type="range" id="swipe-range-mobile" class="slider" min="0" max="100" value="10">
+                                <label>Price Range: $0~<span id="price-val-mobile">1500</span></label>
+                                <input type="range" id="price-range-mobile" class="slider" min="0" max="1500" value="150">
+                            </div>
+                            <button id="apply-filters-mobile" class="apply-btn">Filter</button>
+                        </section>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        
+        <nav class="nav-bar">
+            <div class="nav-inner">
+                <button class="text-btn" onclick="window.location.href='welcome.html'">HOME</button>
+                <button class="text-btn" onclick="window.location.href='market.html'">MARKETPLACE</button>
+                <button class="text-btn" onclick="window.location.href='sell.html'">SELL</button>
+                <button class="text-btn" onclick="window.location.href='about.html'">ABOUT</button>
+            </div>
+        </nav>
+
+        
+        <div class="breadcrumbs">
+            <div class="breadcrumbs-inner">
+                HOME / <span id="bc-page">SELL</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="posting-bar NYU-styled">
+        <div class="posting-container">
+            <span class="posting-label">NEW POSTING:</span>
+
+            <label for="post-location" class="visually-hidden">Dining Hall</label>
+            <select id="post-location" name="post-location" class="post-input">
+                <option value="" disabled selected>Dining Hall</option>
+                <option value="The Marketplace at Kimmel">The Marketplace at Kimmel</option>
+                <option value="Crave NYU (Paulson Center, 6th Fl)">Crave NYU (Paulson Center, 6th Fl)</option>
+                <option value="True Burger (Paulson Center, 6th Fl)">True Burger (Paulson Center, 6th Fl)</option>
+                <option value="Café 181 (Paulson Center, 2nd Fl)">Café 181 (Paulson Center, 2nd Fl)</option>
+                <option value="Café 370 (370 Jay St, Brooklyn)">Café 370 (370 Jay St, Brooklyn)</option>
+                <option value="Jasper Kane Café (Brooklyn)">Jasper Kane Café (Brooklyn)</option>
+                <option value="Dunkin' (UHall, Union Square)">Dunkin' (UHall, Union Square)</option>
+                <option value="Third North Dining Hall">Third North Dining Hall</option>
+                <option value="Lipton Dining Hall">Lipton Dining Hall</option>
+                <option value="Palladium Dining Hall">Palladium Dining Hall</option>
+                <option value="Downstein (Weinstein Hall)">Downstein (Weinstein Hall)</option>
+                <option value="Upstein (Weinstein Hall)">Upstein (Weinstein Hall)</option>
+            </select>
+
+            <label for="post-urgency" class="visually-hidden">Urgency</label>
+            <select id="post-urgency" name="post-urgency" class="post-input small">
+                <option value="" disabled selected>Urgency</option>
+                <option value="Hi">Urgent</option>
+                <option value="Hi">High</option>
+                <option value="Med">Medium</option>
+                <option value="Lo">Low</option>
+            </select>
+
+            <label for="post-qty" class="visually-hidden">Quantity</label>
+            <input id="post-qty" name="post-qty" type="number" placeholder="Qty" class="post-input tiny">
+
+            <label for="post-price" class="visually-hidden">Price</label>
+            <input id="post-price" name="post-price" type="text" placeholder="Price" class="post-input tiny">
+
+            <button id="btn-post-swipe" class="btn-post-white">Post Swipe</button>
+        </div>
+    </div>
+
+    
+    <div class="page-layout" style="margin-top: 2rem;">
+
+        <aside class="sidebar">
+        <section class="filter-group">
+            <h3 class="filter-title">Location<span>−</span></h3>
+            <ul class="filter-list" id="location-filters">
+                <li class="filter-item" data-loc="all">ALL LOCATIONS</li>
+                <li class="filter-item" data-loc="Jasper Kane">JASPER KANE</li>
+                <li class="filter-item" data-loc="Lipton">LIPTON</li>
+                <li class="filter-item" data-loc="Weinstein">WEINSTEIN</li>
+                <li class="filter-item" data-loc="Palladiun">PALLADIUM</li>
+                <li class="filter-item" data-loc="Kimmel">KIMMEL</li>
+                <li class="filter-item" data-loc="Third North">THIRD NORTH</li>
+                <li class="filter-item" data-loc="Crave NYU">CRAVE NYU</li>
+                <li class="filter-item" data-loc="Dunkin">DUNKIN</li>
+                <li class="filter-item" data-loc="Cafe 181">CAFE 181</li>
+                <li class="filter-item" data-loc="Cafe 370">CAFE 370</li>
+            </ul>
+        </section>
+
+        <section class="filter-group">
+            <div class="price-slider-area">
+                <label>Swipe Amount: 0~<span id="swipe-val-desktop">100</span></label>
+                <input type="range" id="swipe-range-desktop" class="slider" min="0" max="100" value="10">
+                
+                <label>Price Range: $0~<span id="price-val-desktop">1500</span></label>
+                <input type="range" id="price-range-desktop" class="slider" min="0" max="1500" value="150">
+            </div>
+            <button id="apply-filters" class="apply-btn">Filter</button>
+        </section>
+    </aside>
+
+        <main class="content-area">
+            <h3 class="category-heading">Ongoing Transactions</h3>
+            <div class="listing-list" id="ongoing-list">
+                
+            </div>
+
+            <h3 class="category-heading">To Be Sold</h3>
+            <div class="listing-list" id="tobesold-list">
+                
+            </div>
+        </main>
+    </div>
+
+    
+    <script>
+        function setupSlider(sliderId, displayId) {
+            const slider = document.getElementById(sliderId);
+            const display = document.getElementById(displayId);
+            if (slider && display) {
+                slider.addEventListener('input', function() {
+                    display.innerHTML = this.value;
+                    updateSliderTrack(this);
+                });
+                updateSliderTrack(slider);
+            }
+        }
+        function updateSliderTrack(slider) {
+            const value = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+            slider.style.background = `linear-gradient(to right, #57068c 0%, #57068c ${value}%, #e0e0e0 ${value}%, #e0e0e0 100%)`;
+        }
+        setupSlider('swipe-range-mobile', 'swipe-val-mobile');
+        setupSlider('price-range-mobile', 'price-val-mobile');
+        setupSlider('swipe-range-desktop', 'swipe-val-desktop');
+        setupSlider('price-range-desktop', 'price-val-desktop');
+    </script>
+    <script>
+        let sellSelectedLocation = 'all';
+
+        
+        document.querySelectorAll('#location-filters .filter-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('#location-filters .filter-item').forEach(el => el.classList.remove('active'));
+                this.classList.add('active');
+                sellSelectedLocation = this.getAttribute('data-loc').toLowerCase();
+            });
+        });
+
+        
+        const mobileFilterItems = document.querySelectorAll('#location-filters-mobile .filter-item');
+        if (mobileFilterItems.length > 0) {
+            mobileFilterItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    document.querySelectorAll('#location-filters-mobile .filter-item').forEach(el => el.classList.remove('active'));
+                    this.classList.add('active');
+                    sellSelectedLocation = this.getAttribute('data-loc').toLowerCase();
+                });
+            });
+        }
+
+        function applySellFilters() {
+            const maxSwipes = parseFloat(document.getElementById('swipe-range-desktop').value);
+            const maxPrice = parseFloat(document.getElementById('price-range-desktop').value);
+
+            
+            ['ongoing-list', 'tobesold-list'].forEach(listId => {
+                const list = document.getElementById(listId);
+                if (!list) return;
+                const rows = list.querySelectorAll('.listing-row');
+                rows.forEach(row => {
+                    const loc = row.getAttribute('data-location') || '';
+                    const amt = parseFloat(row.getAttribute('data-amount')) || 0;
+                    const price = parseFloat(row.getAttribute('data-price')) || 0;
+
+                    const locMatch = (sellSelectedLocation === 'all') || loc.includes(sellSelectedLocation);
+                    const swipeMatch = amt <= maxSwipes;
+                    const priceMatch = price <= maxPrice;
+
+                    if (locMatch && swipeMatch && priceMatch) {
+                        row.style.display = 'flex';    
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        
+        const applyBtn = document.getElementById('apply-filters');
+        if (applyBtn) {
+            applyBtn.addEventListener('click', applySellFilters);
+        }
+        
+        const applyBtnMobile = document.getElementById('apply-filters-mobile');
+        if (applyBtnMobile) {
+            applyBtnMobile.addEventListener('click', applySellFilters);
+        }
+    </script>
+</body>
+</html>

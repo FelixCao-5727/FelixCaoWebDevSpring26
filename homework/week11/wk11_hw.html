@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>My Location Map</title>
+    
+    <!-- Leaflet CSS (required for map rendering) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Leaflet JavaScript library -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb4d);
+            padding: 24px 32px;
+            color: white;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        
+        .status-area {
+            background: #f8f9fa;
+            padding: 16px 32px;
+            border-bottom: 1px solid #e9ecef;
+            font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+            font-size: 0.9rem;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .status-badge {
+            background: #e9ecef;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status-text {
+            font-weight: 500;
+        }
+        
+        .coordinates {
+            font-family: monospace;
+            background: #e9ecef;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        #map {
+            height: 500px;
+            width: 100%;
+            background: #e9ecef;
+        }
+        
+        .info-panel {
+            padding: 16px 32px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            font-size: 0.85rem;
+            color: #6c757d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .accuracy-badge {
+            background: #e9ecef;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        button:hover {
+            background: #1557b0;
+        }
+        
+        @media (max-width: 640px) {
+            body { padding: 12px; }
+            header { padding: 20px; }
+            .status-area { flex-direction: column; align-items: flex-start; }
+            .info-panel { flex-direction: column; align-items: flex-start; }
+            #map { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📍 My Location on a Map</h1>
+            <div class="subtitle">Discover where you are in the world — an interactive map powered by Leaflet & OpenStreetMap</div>
+        </header>
+        
+        <div class="status-area">
+            <span class="status-badge">📍 Status</span>
+            <span id="status" class="status-text">Requesting location access...</span>
+        </div>
+        <div id="map"></div>
+        
+        <div class="info-panel">
+            <div>
+                <span>🗺️ Map data © </span>
+                <a href="https://www.openstreetmap.org/copyright" target="_blank" style="color: #1a73e8; text-decoration: none;">OpenStreetMap contributors</a>
+            </div>
+            <div id="accuracyInfo" class="accuracy-badge">⚡ Accuracy: —</div>
+            <button id="retryBtn">⟳ Try again</button>
+        </div>
+    </div>
+    
+    <script>
+        const statusEl = document.getElementById('status');
+        let map = null;         
+        let currentMarker = null;   
+        function requestLocation() {
+            statusEl.textContent = '🔍 Checking for geolocation support...';
+            if ("geolocation" in navigator) {
+                statusEl.textContent = '🌐 Geolocation is supported. Requesting your location...';
+                navigator.geolocation.getCurrentPosition(showOnMap, handleError, {
+                    enableHighAccuracy: true,  
+                    timeout: 10000,            
+                    maximumAge: 0              
+                });
+            } else {
+                statusEl.innerHTML = '❌ Geolocation is not supported by this browser. Please use a modern browser (Chrome, Firefox, Edge, Safari).';
+                document.getElementById('accuracyInfo').textContent = '⚠️ Geolocation unavailable';
+            }
+        }
+        function showOnMap(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const accuracy = position.coords.accuracy;  
+            statusEl.innerHTML = ` Location obtained! <strong>Lat: ${lat.toFixed(6)}°, Lng: ${lon.toFixed(6)}°</strong>`;
+            const accuracyInMeters = accuracy ? `${Math.round(accuracy)} meters` : 'unknown';
+            document.getElementById('accuracyInfo').innerHTML = `🎯 Accuracy: ± ${accuracyInMeters}`;
+            if (map) {
+                if (currentMarker) {
+                    currentMarker.setLatLng([lat, lon]);
+                } else {
+                    currentMarker = L.marker([lat, lon]).addTo(map).bindPopup('📍 You are here!').openPopup();
+                }
+                map.setView([lat, lon], 15);
+                if (window.accuracyCircle) {
+                    window.accuracyCircle.setRadius(accuracy);
+                    window.accuracyCircle.setLatLng([lat, lon]);
+                } else if (accuracy) {
+                    window.accuracyCircle = L.circle([lat, lon], {
+                        radius: accuracy,
+                        color: '#3388ff',
+                        fillColor: '#3388ff',
+                        fillOpacity: 0.15,
+                        weight: 1
+                    }).addTo(map);
+                }
+                return;
+            }
+            map = L.map('map').setView([lat, lon], 15);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 19,
+                minZoom: 3
+            }).addTo(map);
+            currentMarker = L.marker([lat, lon])
+                .addTo(map)
+                .bindPopup('📍 You are here!')
+                .openPopup();
+            if (accuracy) {
+                window.accuracyCircle = L.circle([lat, lon], {
+                    radius: accuracy,
+                    color: '#3388ff',
+                    fillColor: '#3388ff',
+                    fillOpacity: 0.15,
+                    weight: 1
+                }).addTo(map);
+            }
+            map.on('dblclick', function() {
+                map.setView([lat, lon], 15);
+                if (currentMarker) currentMarker.openPopup();
+            });
+        }
+        function handleError(error) {
+            let errorMessage = '';
+            let userFriendlyMessage = '';
+            
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMessage = 'User denied the request for geolocation.';
+                    userFriendlyMessage = '❌ Location access was denied. Please allow location access and try again.';
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMessage = 'Location information is unavailable.';
+                    userFriendlyMessage = '❌ Unable to determine your location. Check your device\'s location services.';
+                    break;
+                case error.TIMEOUT:
+                    errorMessage = 'The request to get user location timed out.';
+                    userFriendlyMessage = '⏱️ Location request timed out. Please check your connection and try again.';
+                    break;
+                default:
+                    errorMessage = 'An unknown error occurred.';
+                    userFriendlyMessage = '⚠️ Something went wrong. Please try again.';
+                    break;
+            }
+            console.error('Geolocation error:', errorMessage);
+            statusEl.innerHTML = `${userFriendlyMessage} <span style="font-size:0.8rem; opacity:0.7;">(${errorMessage})</span>`;
+            document.getElementById('accuracyInfo').textContent = '⚠️ Location unavailable';
+            if (!map) {
+                map = L.map('map').setView([20, 0], 2);
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                    subdomains: 'abcd',
+                    maxZoom: 19
+                }).addTo(map);
+                L.popup()
+                    .setLatLng([20, 0])
+                    .setContent('📍 Location access required to show your position.<br>🔒 Click "Try again" and allow location.')
+                    .openOn(map);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+
+            requestLocation();
+            const retryBtn = document.getElementById('retryBtn');
+            retryBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                statusEl.innerHTML = '🔄 Retrying location request...';
+                document.getElementById('accuracyInfo').textContent = '⚡ Accuracy: —';
+                requestLocation();
+            });
+        });
+    </script>
+</body>
+</html>
